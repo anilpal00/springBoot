@@ -37,18 +37,18 @@ public class UserController {// accept requests
 
 	@PostMapping("/age/{age}/height/{height}") // base path
 	@ResponseStatus(code = HttpStatus.CREATED)
-	void saveUser(@Valid @RequestBody User user, @PathVariable("age") int age, @PathVariable("height") float height) {
+	Integer saveUser(@Valid @RequestBody User user, @PathVariable("age") int age, @PathVariable("height") float height) {
 		userService.save(user);
 		System.out.println(height);
 		System.out.println(age);
-		log.debug(user.getName());
+		return user.getId();
 	}
 
 	@PostMapping
-	void saveUser1(@RequestBody User user) {
+	Integer saveUser1(@RequestBody User user) {
 		userService.save(user);
-		log.debug(user.getName());
 		System.out.println("second");
+		return user.getId();
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
