@@ -13,5 +13,8 @@ public class UserService {
 	public void save(User user) {
 		repository.save(user);
 	}
+	public Iterable<User> getUser() {
+		return repository.findAll();
+	}
 
 }

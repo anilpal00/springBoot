@@ -21,7 +21,7 @@ public class User {//not a spring bean
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
+	} 
 	public int getAge() {
 		return age;
 	}

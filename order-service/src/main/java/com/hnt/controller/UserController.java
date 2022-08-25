@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hnt.entity.User;
@@ -29,11 +31,12 @@ public class UserController {// accept requests
 	UserService userService; // dependency
 
 	@GetMapping
-	String getUser() {
-		return "test";
+	Iterable<User> getUser() {
+		return userService.getUser();
 	}
 
 	@PostMapping("/age/{age}/height/{height}") // base path
+	@ResponseStatus(code = HttpStatus.CREATED)
 	void saveUser(@Valid @RequestBody User user, @PathVariable("age") int age, @PathVariable("height") float height) {
 		userService.save(user);
 		System.out.println(height);
