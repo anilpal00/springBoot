@@ -45,7 +45,7 @@ public class UserController {// accept requests
 	}
 
 	@PostMapping
-	Integer saveUser1(@RequestBody User user) {
+	Integer saveUser1(@Valid @RequestBody User user) {
 		userService.save(user);
 		System.out.println("second");
 		return user.getId();
