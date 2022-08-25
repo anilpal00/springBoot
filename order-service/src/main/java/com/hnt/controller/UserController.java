@@ -1,5 +1,7 @@
 package com.hnt.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +26,7 @@ public class UserController {//accept requests
 	}
 
 	@PostMapping("/user/age/{age}/height/{height}")  //base path
-	void saveUser(@RequestBody User user, @PathVariable("age") int age, @PathVariable("height") float height) {
+	void saveUser(@Valid @RequestBody User user, @PathVariable("age") int age, @PathVariable("height") float height) {
 		userService.save(user);
 		System.out.println(height);
 		System.out.println(age);
